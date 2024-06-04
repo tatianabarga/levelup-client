@@ -15,8 +15,6 @@ const initialState = {
 
 const GameForm = ({ user }) => {
   const [gameTypes, setGameTypes] = useState([]);
-  // const [formInput, setFormInput] = useState(initialState);
-  // const [gameType, setGameType] = useState('');
   /*
   Since the input fields are bound to the values of
   the properties of this state variable, you need to
@@ -56,7 +54,7 @@ const GameForm = ({ user }) => {
     };
 
     // Send POST request to your API
-    createGame(game).then(console.log(game)).then(() => router.push('/games'));
+    createGame(game).then(() => router.push('/games'));
   };
 
   return (
@@ -102,23 +100,6 @@ const GameForm = ({ user }) => {
             required
           />
         </FloatingLabel>
-        {/* <Form.Group className="mb-3">
-          <Form.Label>Title</Form.Label>
-          <Form.Control name="title" required value={currentGame.title} onChange={handleChange} />
-        </Form.Group> */}
-        {/* TODO: create the rest of the input fields */}
-        {/* <Form.Group className="mb-3">
-          <Form.Label>Maker</Form.Label>
-          <Form.Control name="maker" required value={currentGame.maker} onChange={handleChange} />
-        </Form.Group> */}
-        {/* <Form.Group className="mb-3">
-          <Form.Label>number Of Players</Form.Label>
-          <Form.Control name="numberOfPlayers" required value={currentGame.numberOfPlayers} onChange={handleChange} />
-        </Form.Group> */}
-        {/* <Form.Group className="mb-3">
-          <Form.Label>Skill Level</Form.Label>
-          <Form.Control name="skillLevel" required value={currentGame.skillLevel} onChange={handleChange} />
-        </Form.Group> */}
         <FloatingLabel controlId="floatingSelect" label="Game Type">
           <Form.Select
             aria-label="Game Type"

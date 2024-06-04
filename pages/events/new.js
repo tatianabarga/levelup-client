@@ -1,6 +1,6 @@
 import { Button } from 'react-bootstrap';
 import { useRouter } from 'next/router';
-import GameForm from '../../components/game/GameForm';
+import EventForm from '../../components/event/EventForm';
 import { useAuth } from '../../utils/context/authContext';
 
 const NewEvent = () => {
@@ -16,7 +16,7 @@ const NewEvent = () => {
         Register New Event
       </Button>
       <h2>Register New Event</h2>
-      <GameForm user={user} />
+      <EventForm user={user} />
     </div>
   );
 };

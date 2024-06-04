@@ -16,12 +16,6 @@ const initialState = {
 
 const EventForm = () => {
   const [games, setGames] = useState([]);
-  const [formInput, setFormInput] = useState(initialState);
-  /*
-  Since the input fields are bound to the values of
-  the properties of this state variable, you need to
-  provide some default values.
-  */
   const [currentEvent, setCurrentEvent] = useState(initialState);
   const router = useRouter();
 
@@ -32,7 +26,7 @@ const EventForm = () => {
   const handleChange = (e) => {
     // Complete the onChange function
     const { name, value } = e.target;
-    setFormInput((prevState) => ({
+    setCurrentEvent((prevState) => ({
       ...prevState,
       [name]: value,
     }));
@@ -47,11 +41,11 @@ const EventForm = () => {
       description: currentEvent.description,
       date: currentEvent.date,
       time: currentEvent.time,
-      organizer: currentEvent.organizer,
+      organizer: Number(currentEvent.organizer),
     };
 
     // Send POST request to your API
-    createEvent(event).then(() => router.push('/games'));
+    createEvent(event).then(console.log(event)).then(() => router.push('/events'));
   };
 
   return (
@@ -63,15 +57,15 @@ const EventForm = () => {
             name="game"
             onChange={handleChange}
             className="mb-3"
-            value={formInput.game}
+            value={currentEvent.game}
             required
           >
             <option value="">Select a Game</option>
             {
               games.map((game) => (
                 <option
-                  key={game.firebaseKey}
-                  value={game.firebaseKey}
+                  key={game.id}
+                  value={game.id}
                 >
                   {game.title}
                 </option>
@@ -80,22 +74,46 @@ const EventForm = () => {
           </Form.Select>
         </FloatingLabel>
         {/* TODO: create the rest of the input fields */}
-        <Form.Group className="mb-3">
-          <Form.Label>Description</Form.Label>
-          <Form.Control name="description" required value={currentEvent.description} onChange={handleChange} />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Date</Form.Label>
-          <Form.Control name="date" required value={currentEvent.date} onChange={handleChange} />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Time</Form.Label>
-          <Form.Control name="time" required value={currentEvent.time} onChange={handleChange} />
-        </Form.Group>
-        <Form.Group className="mb-3">
-          <Form.Label>Organizer ID</Form.Label>
-          <Form.Control name="organizer" required value={currentEvent.organizer} onChange={handleChange} />
-        </Form.Group>
+        <FloatingLabel controlId="floatingTextarea" label="Description" className="mb-3">
+          <Form.Control
+            as="textarea"
+            placeholder="Description"
+            name="description"
+            value={currentEvent.description}
+            onChange={handleChange}
+            required
+          />
+        </FloatingLabel>
+        <FloatingLabel controlId="floatingTextarea" label="Date" className="mb-3">
+          <Form.Control
+            as="textarea"
+            placeholder="Date"
+            name="date"
+            value={currentEvent.date}
+            onChange={handleChange}
+            required
+          />
+        </FloatingLabel>
+        <FloatingLabel controlId="floatingTextarea" label="Time" className="mb-3">
+          <Form.Control
+            as="textarea"
+            placeholder="Time"
+            name="time"
+            value={currentEvent.time}
+            onChange={handleChange}
+            required
+          />
+        </FloatingLabel>
+        <FloatingLabel controlId="floatingTextarea" label="Organizer Id" className="mb-3">
+          <Form.Control
+            as="textarea"
+            placeholder="Organizer Id"
+            name="organizer"
+            value={currentEvent.organizer}
+            onChange={handleChange}
+            required
+          />
+        </FloatingLabel>
 
         <Button variant="primary" type="submit">
           Submit
