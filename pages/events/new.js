@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import GameForm from '../../components/game/GameForm';
 import { useAuth } from '../../utils/context/authContext';
 
-const NewGame = () => {
+const NewEvent = () => {
   const { user } = useAuth();
   const router = useRouter();
   return (
@@ -13,12 +13,12 @@ const NewGame = () => {
           router.push('/events/new');
         }}
       >
-        Register New Game
+        Register New Event
       </Button>
-      <h2>Register New Game</h2>
+      <h2>Register New Event</h2>
       <GameForm user={user} />
     </div>
   );
 };
 
-export default NewGame;
+export default NewEvent;
