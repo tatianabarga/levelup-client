@@ -35,10 +35,6 @@ const GameForm = ({ user }) => {
       [name]: value,
     }));
   };
-  // const handleChangeCheck = (e) => {
-  //   const { value } = e.target;
-  //   setGameType(value);
-  // };
 
   const handleSubmit = (e) => {
     // Prevent form from being submitted
@@ -48,13 +44,13 @@ const GameForm = ({ user }) => {
       maker: currentGame.maker,
       title: currentGame.title,
       numberOfPlayers: Number(currentGame.numberOfPlayers),
-      skillLevel: Number(currentGame.skillLevel),
       gameType: Number(currentGame.gameType),
+      skillLevel: Number(currentGame.skillLevel),
       userId: user.uid,
     };
 
     // Send POST request to your API
-    createGame(game).then(() => router.push('/games'));
+    createGame(game).then(console.log(game)).then(() => router.push('/games'));
   };
 
   return (
